@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PreciousMetals Pro - Live Gold & Silver Rates India</title>
+    <meta name="description" content="Get live gold and silver rates in India. Book rates instantly with PreciousMetals Pro - Your trusted precious metals partner.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <h2>Loading Live Rates...</h2>
+            <p>Fetching latest precious metal prices</p>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <span class="logo-icon">💎</span>
+                    <div class="logo-text">
+                        <h1>PreciousMetals Pro</h1>
+                        <span class="tagline">Live Indian Rates</span>
+                    </div>
+                </div>
+                <div class="header-info">
+                    <div class="market-status">
+                        <span class="status-indicator active"></span>
+                        <span>Market Open</span>
+                    </div>
+                    <div class="last-update">
+                        Last Updated: <span id="headerLastUpdate">--:--</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Market Summary -->
+            <section class="market-summary">
+                <div class="summary-card">
+                    <h3>Today's Market Summary</h3>
+                    <div class="summary-stats">
+                        <div class="stat">
+                            <span class="stat-label">Gold Trend</span>
+                            <span class="stat-value trend-up" id="goldTrend">↗ Bullish</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">Silver Trend</span>
+                            <span class="stat-value trend-down" id="silverTrend">↘ Bearish</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">Market Volume</span>
+                            <span class="stat-value">High</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Rates Container -->
+            <section class="rates-section">
+                <div class="section-header">
+                    <h2>Live Precious Metal Rates</h2>
+                    <p>Real-time prices updated every 30 seconds</p>
+                </div>
+
+                <div class="rates-container">
+                    <!-- Gold Card -->
+                    <div class="metal-card gold-card">
+                        <div class="card-header">
+                            <div class="metal-info">
+                                <div class="metal-icon gold-icon">
+                                    <svg viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M12 2L15.09 8.26L22 9L17 14L18.18 21L12 17.77L5.82 21L7 14L2 9L8.91 8.26L12 2Z"/>
+                                    </svg>
+                                </div>
+                                <div class="metal-details">
+                                    <h3>Gold (24K)</h3>
+                                    <span class="metal-unit">Per 10 Grams</span>
+                                </div>
+                            </div>
+                            <div class="purity-badge">99.9% Pure</div>
+                        </div>
+
+                        <div class="price-section">
+                            <div class="current-price">
+                                <span class="currency">₹</span>
+                                <span class="price-value" id="goldPrice">63,450</span>
+                            </div>
+                            <div class="price-change" id="goldChange">
+                                <span class="change-value">+₹340</span>
+                                <span class="change-percent">(+0.54%)</span>
+                            </div>
+                        </div>
+
+                        <div class="price-range">
+                            <div class="range-item">
+                                <span class="range-label">Today's Low</span>
+                                <span class="range-value" id="goldLow">₹63,120</span>
+                            </div>
+                            <div class="range-item">
+                                <span class="range-label">Today's High</span>
+                                <span class="range-value" id="goldHigh">₹63,580</span>
+                            </div>
+                        </div>
+
+                        <button class="book-rate-btn gold-btn" onclick="openBookingModal('Gold')">
+                            <span>Book This Rate</span>
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M4 12L20 12M20 12L14 6M20 12L14 18"/>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Silver Card -->
+                    <div class="metal-card silver-card">
+                        <div class="card-header">
+                            <div class="metal-info">
+                                <div class="metal-icon silver-icon">
+                                    <svg viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M12 2L15.09 8.26L22 9L17 14L18.18 21L12 17.77L5.82 21L7 14L2 9L8.91 8.26L12 2Z"/>
+                                    </svg>
+                                </div>
+                                <div class="metal-details">
+                                    <h3>Silver (999)</h3>
+                                    <span class="metal-unit">Per Kilogram</span>
+                                </div>
+                            </div>
+                            <div class="purity-badge">99.9% Pure</div>
+                        </div>
+
+                        <div class="price-section">
+                            <div class="current-price">
+                                <span class="currency">₹</span>
+                                <span class="price-value" id="silverPrice">77,850</span>
+                            </div>
+                            <div class="price-change negative" id="silverChange">
+                                <span class="change-value">-₹180</span>
+                                <span class="change-percent">(-0.23%)</span>
+                            </div>
+                        </div>
+
+                        <div class="price-range">
+                            <div class="range-item">
+                                <span class="range-label">Today's Low</span>
+                                <span class="range-value" id="silverLow">₹77,650</span>
+                            </div>
+                            <div class="range-item">
+                                <span class="range-label">Today's High</span>
+                                <span class="range-value" id="silverHigh">₹78,120</span>
+                            </div>
+                        </div>
+
+                        <button class="book-rate-btn silver-btn" onclick="openBookingModal('Silver')">
+                            <span>Book This Rate</span>
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M4 12L20 12M20 12L14 6M20 12L14 18"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="rates-footer">
+                    <div class="update-info">
+                        <span class="update-indicator"></span>
+                        <span>Last updated: <span id="lastUpdateTime">--:--:-- IST</span></span>
+                    </div>
+                    <div class="disclaimer">
+                        <small>*Rates are indicative and subject to market fluctuations. Final rates confirmed at booking.</small>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="modal">
+        <div class="modal-backdrop" onclick="closeBookingModal()"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Book Current Rate</h2>
+                <button class="modal-close" onclick="closeBookingModal()">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18 6L6 18M6 6L18 18"/>
+                    </svg>
+                </button>
+            </div>
+
+            <form id="bookingForm" class="booking-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="fullName">Full Name *</label>
+                        <input type="text" id="fullName" name="fullName" required autocomplete="name">
+                        <span class="form-error" id="fullNameError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" required autocomplete="tel" pattern="[0-9]{10}">
+                        <span class="form-error" id="phoneError"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required autocomplete="email">
+                    <span class="form-error" id="emailError"></span>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="metalType">Metal Type *</label>
+                        <select id="metalType" name="metalType" required>
+                            <option value="">Select Metal</option>
+                            <option value="Gold">Gold (24K) - ₹63,450/10g</option>
+                            <option value="Silver">Silver (999) - ₹77,850/kg</option>
+                        </select>
+                        <span class="form-error" id="metalTypeError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="quantity">Quantity *</label>
+                        <input type="number" id="quantity" name="quantity" min="1" step="0.1" required>
+                        <span class="form-helper" id="quantityHelper">Enter quantity in grams/kg</span>
+                        <span class="form-error" id="quantityError"></span>
+                    </div>
+                </div>
+
+                <div class="booking-summary">
+                    <div class="summary-row">
+                        <span>Current Rate:</span>
+                        <span id="summaryRate">--</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Quantity:</span>
+                        <span id="summaryQuantity">--</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Estimated Total:</span>
+                        <span id="summaryTotal">₹0</span>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="closeBookingModal()">Cancel</button>
+                    <button type="submit" class="btn-primary" id="submitBooking">
+                        <span class="btn-text">Confirm Booking</span>
+                        <div class="btn-loader" style="display: none;"></div>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal">
+        <div class="modal-backdrop" onclick="closeSuccessModal()"></div>
+        <div class="modal-content success-modal">
+            <div class="success-icon">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"/>
+                </svg>
+            </div>
+            <h2>Booking Confirmed!</h2>
+            <div id="bookingDetails" class="booking-details"></div>
+            <p class="success-message">You will receive a confirmation email and SMS shortly. Our team will contact you within 30 minutes.</p>
+            <button class="btn-primary" onclick="closeSuccessModal()">Close</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <span class="logo-icon">💎</span>
+                        <div>
+                            <h3>PreciousMetals Pro</h3>
+                            <p>Your trusted precious metals partner since 2020</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Contact Information</h4>
+                    <div class="contact-list">
+                        <div class="contact-item">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M3 8L10.89 13.26C11.2187 13.4793 11.6049 13.5963 12 13.5963C12.3951 13.5963 12.7813 13.4793 13.11 13.26L21 8M5 19H19C19.5304 19 20.0391 18.7893 20.4142 18.4142C20.7893 18.0391 21 17.5304 21 17V7C21 6.46957 20.7893 5.96086 20.4142 5.58579C20.0391 5.21071 19.5304 5 19 5H5C4.46957 5 3.96086 5.21071 3.58579 5.58579C3.21071 5.96086 3 6.46957 3 7V17C3 17.5304 3.21071 18.0391 3.58579 18.4142C3.96086 18.7893 4.46957 19 5 19Z"/>
+                            </svg>
+                            <a href="mailto:support@preciousmetalspro.in">support@preciousmetalspro.in</a>
+                        </div>
+                        <div class="contact-item">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M3 5C3 3.89543 3.89543 3 5 3H8.27924C8.70967 3 9.09181 3.27543 9.22792 3.68377L10.7257 8.17721C10.8831 8.64932 10.6694 9.16531 10.2243 9.38787L7.96701 10.5165C9.06925 12.9612 11.0388 14.9308 13.4835 16.033L14.6121 13.7757C14.8347 13.3306 15.3507 13.1169 15.8228 13.2743L20.3162 14.7721C20.7246 14.9082 21 15.2903 21 15.7208V19C21 20.1046 20.1046 21 19 21H18C9.71573 21 3 14.2843 3 6V5Z"/>
+                            </svg>
+                            <a href="tel:+911234567890">+91 12345 67890</a>
+                        </div>
+                        <div class="contact-item">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22S19 14.25 19 9C19 5.13 15.87 2 12 2ZM12 11.5C10.62 11.5 9.5 10.38 9.5 9S10.62 6.5 12 6.5S14.5 7.62 14.5 9S13.38 11.5 12 11.5Z"/>
+                            </svg>
+                            <span>Mumbai, Maharashtra, India</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Business Hours</h4>
+                    <div class="hours-list">
+                        <div class="hours-item">
+                            <span>Monday - Friday</span>
+                            <span>9:00 AM - 6:00 PM</span>
+                        </div>
+                        <div class="hours-item">
+                            <span>Saturday</span>
+                            <span>10:00 AM - 4:00 PM</span>
+                        </div>
+                        <div class="hours-item">
+                            <span>Sunday</span>
+                            <span>Closed</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Certifications</h4>
+                    <div class="certifications">
+                        <div class="cert-badge">BIS Certified</div>
+                        <div class="cert-badge">ISO 9001:2015</div>
+                        <div class="cert-badge">MMTC Authorized</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2024 PreciousMetals Pro. All rights reserved.</p>
+                    <div class="footer-links">
+                        <a href="#privacy">Privacy Policy</a>
+                        <a href="#terms">Terms of Service</a>
+                        <a href="#refund">Refund Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="config.js"></script>
+    <script src="utils.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
